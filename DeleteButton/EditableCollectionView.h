@@ -14,31 +14,6 @@
 @optional
 - (void)collectionView:(UICollectionView*)collectionView shouldDeleteItemAtIndexPath:(NSIndexPath*)indexPath;
 - (BOOL)collectionView:(UICollectionView *)collectionView canEditCellAtIndexPath:(NSIndexPath *)indexPath;
-
-
-/////////////////////////////
-//@class EditableCollectionViewCell;
-//
-//@protocol EditableCollectionViewCellDelegate <NSObject>
-//
-//@optional
-//// called when a gesture recognizer attempts to transition out of UIGestureRecognizerStatePossible. returning NO causes it to transition to UIGestureRecognizerStateFailed
-//- (BOOL)editableCellDeleteModeShouldBegin:(EditableCollectionViewCell*)editableCell;
-//- (void)editableCellDelButtonDidTap:(EditableCollectionViewCell*)editableCell;
-//- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-//    // Return NO if you do not want the specified item to be editable.
-//    return YES;
-//}
-//
-//@end
-//
-//@interface EditableCollectionViewCell : UICollectionViewCell <UIGestureRecognizerDelegate>
-//
-//@property (getter=isDeleteMode) BOOL deleteMode;
-//@property(nonatomic, assign) id<EditableCollectionViewCellDelegate> delegate;
-//
-//@end
-///////////////////////////////////////////////
 @end
 
 @interface EditableCollectionView : UICollectionView <EditableCollectionViewCellDelegate>
