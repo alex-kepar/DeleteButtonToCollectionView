@@ -8,11 +8,12 @@
 
 #import "EditableCollectionViewCell.h"
 
-@interface EditableCollectionViewCell()
-@property (weak, nonatomic) IBOutlet UIView *editableView;
+@interface EditableCollectionViewCell() <UIGestureRecognizerDelegate>
+@property (strong, nonatomic) UIView *contentSnapshotView;
 @property (nonatomic) UIButton *delButton;
 @property UIPanGestureRecognizer *panGesture;
 @property CGPoint startPoint;
+@property BOOL isDeleteButtonShow;
 @end
 
 @implementation EditableCollectionViewCell
@@ -21,34 +22,46 @@ CGFloat const buttonHeight = 20;
 
 @synthesize deleteMode = _deleteMode;
 
-- (void)setEditableView:(UIView *)editableView {
-    if (_editableView != editableView) {
-        _editableView = editableView;
-        self.startPoint = editableView.frame.origin;
+
+
+- (void)setIsDeleteButtonShow:(BOOL)isDeleteButtonShow {
+    if (isDeleteButtonShow) {
+        if (!self.contentSnapshotView) {
+            self.contentSnapshotView = [self.contentView snapshotViewAfterScreenUpdates:NO];
+            self.contentSnapshotView.backgroundColor = self.backgroundColor;
+            [self addSubview:self.delButton];
+            [self addSubview:self.contentSnapshotView];
+            self.contentView.hidden = YES;
+        }
+    } else {
+        self.contentView.hidden = NO;
+        [self.delButton removeFromSuperview];
+        [self.contentSnapshotView removeFromSuperview];
+        self.contentSnapshotView = nil;
     }
 }
 
+- (BOOL)isDeleteButtonShow {
+    return self.contentSnapshotView != nil;
+}
+
 - (void)setDeleteMode:(BOOL)deleteMode {
-    if (_deleteMode == deleteMode && self.delButton.hidden == !deleteMode) {
+    if (_deleteMode == deleteMode && _deleteMode == self.isDeleteButtonShow) {
         return;
     }
     self.panGesture.enabled = NO;
-    //NSLog(@"%@%@", @"panGesture.enabled = ", self.panGesture.enabled ? @"YES" : @"NO");
     [UIView animateWithDuration:0.3
                           delay:0
                         options:UIViewAnimationOptionCurveEaseOut
                      animations:^{
-                         CGRect frame = self.editableView.frame;
-                         //CGRect frame = self.contentView.frame;
+                         CGRect frame = [self.contentSnapshotView frame];
                          frame.origin.y = deleteMode ? buttonHeight : self.startPoint.y;
-                         self.editableView.frame = frame;
-                         //self.contentView.frame = frame;
+                         [self.contentSnapshotView setFrame:frame];
                      }
                      completion:^(BOOL finished) {
-                         self.delButton.hidden = !deleteMode;
+                         self.isDeleteButtonShow = deleteMode;
                          _deleteMode = deleteMode;
                          self.panGesture.enabled = !deleteMode;
-                         //NSLog(@"%@%@", @"panGesture.enabled = ", self.panGesture.enabled ? @"YES" : @"NO");
                      }];
 }
 
@@ -66,10 +79,7 @@ CGFloat const buttonHeight = 20;
         [_delButton setTitle:@"Delete" forState:UIControlStateNormal];
         [_delButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_delButton.titleLabel setFont:[UIFont systemFontOfSize:15]];
-        [_delButton setHidden:YES];
         [_delButton addTarget:self action:@selector(delButtonDidTap) forControlEvents:UIControlEventTouchUpInside];
-        [self.contentView insertSubview:_delButton atIndex:0];
-        //[self.backgroundView addSubview:_delButton];
     }
     return _delButton;
 }
@@ -100,30 +110,24 @@ CGFloat const buttonHeight = 20;
 }
 
 - (void)didPanGestureInvoke:(UIPanGestureRecognizer*)sender {
-    //NSLog(@"%@%@", @"didPanGestureInvoke enabled = ", self.panGesture.enabled ? @"YES" : @"NO");
-    //CGPoint trans = [sender translationInView:self.editableView];
-    CGPoint trans = [sender translationInView:self.editableView];
+    CGPoint trans = [sender translationInView:self.contentView];
     if (trans.y < 0) {
         trans.y = 0;
     }
     if (sender.state == UIGestureRecognizerStateBegan) {
-        self.delButton.hidden = NO;
-        //NSLog(@"%@", @"State began");
+        self.startPoint = self.frame.origin;
+        self.isDeleteButtonShow = YES;
     } else if (sender.state == UIGestureRecognizerStateChanged) {
-        CGFloat shift = trans.y;// + self.editableView.frame.origin.y;
+        CGFloat shift = trans.y;
         if (shift >= buttonHeight) {
             shift = buttonHeight + (shift - buttonHeight)/5;
         }
-        CGRect frame = self.editableView.frame;
-        //frame.origin.x = self.startPoint.x + trans.x;
+        CGRect frame = [self.contentSnapshotView frame];
         frame.origin.y = self.startPoint.y + shift;
-        self.editableView.frame = frame;
-        //NSLog(@"%@", @"State changed");
+        [self.contentSnapshotView setFrame:frame];
     } else if (sender.state == UIGestureRecognizerStateEnded) {
         [self setDeleteMode:trans.y >= buttonHeight/2];
-        //NSLog(@"%@", @"State ended");
     }
-    //NSLog(@"%@", NSStringFromCGPoint(trans));
 }
 
 - (void)prepareForReuse {

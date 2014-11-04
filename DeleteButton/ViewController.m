@@ -35,6 +35,6 @@
 }
 
 - (void)collectionView:self shouldDeleteItemAtIndexPath:indexPath {
-    NSLog(@"%d", [indexPath row]);
+    NSLog(@"%ld", [indexPath row]);
 }
 @end

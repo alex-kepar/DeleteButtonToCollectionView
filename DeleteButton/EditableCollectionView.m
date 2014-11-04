@@ -23,10 +23,9 @@
 - (BOOL)editableCellDeleteModeShouldBegin:(EditableCollectionViewCell *)editableCell {
     BOOL ret = ![self resetEditableCells];
     if (self.delegate) {
-        id delegate = self.delegate;
-        if ([delegate respondsToSelector:@selector(collectionView:canEditCellAtIndexPath:)]) {
+        if ([self.delegate respondsToSelector:@selector(collectionView:canEditCellAtIndexPath:)]) {
             NSIndexPath *indexPath = [self indexPathForCell:editableCell];
-            if (![delegate collectionView:self canEditCellAtIndexPath:indexPath]) {
+            if (![self.delegate collectionView:self canEditCellAtIndexPath:indexPath]) {
                 ret = NO;
             }
         }
@@ -36,10 +35,9 @@
 
 - (void)editableCellDelButtonDidTap:(EditableCollectionViewCell *)editableCell {
     if (self.delegate) {
-        id delegate = self.delegate;
-        if ([delegate respondsToSelector:@selector(collectionView:shouldDeleteItemAtIndexPath:)]) {
+        if ([self.delegate respondsToSelector:@selector(collectionView:shouldDeleteItemAtIndexPath:)]) {
             NSIndexPath *indexPath = [self indexPathForCell:editableCell];
-            [delegate collectionView:self shouldDeleteItemAtIndexPath:indexPath];
+            [self.delegate collectionView:self shouldDeleteItemAtIndexPath:indexPath];
         }
     }
 }

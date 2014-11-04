@@ -19,7 +19,7 @@
 
 @end
 
-@interface EditableCollectionViewCell : UICollectionViewCell <UIGestureRecognizerDelegate>
+@interface EditableCollectionViewCell : UICollectionViewCell
 
 @property (getter=isDeleteMode) BOOL deleteMode;
 @property(nonatomic, assign) id<EditableCollectionViewCellDelegate> delegate;
