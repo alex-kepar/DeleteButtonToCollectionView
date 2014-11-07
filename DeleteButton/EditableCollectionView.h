@@ -1,13 +1,12 @@
 //
-//  EditableCollectionView.h
+//  EditableCollectionView2.h
 //  DeleteButton
 //
-//  Created by Oleksandr Kiporenko on 10/24/14.
+//  Created by Oleksandr Kiporenko on 11/4/14.
 //  Copyright (c) 2014 Oleksandr Kiporenko. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
-#import "EditableCollectionViewCell.h"
 
 @class EditableCollectionView;
 @protocol EditableCollectionViewDelegate <NSObject>
@@ -16,8 +15,11 @@
 - (BOOL)collectionView:(UICollectionView *)collectionView canEditCellAtIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@interface EditableCollectionView : UICollectionView <EditableCollectionViewCellDelegate>
+@interface EditableCollectionView : UICollectionView
 
 @property (nonatomic, assign) id <UICollectionViewDelegate,EditableCollectionViewDelegate> delegate;
+@property (nonatomic) CGFloat buttonHeight;
+@property (nonatomic) BOOL isEditMode;
+
 
 @end

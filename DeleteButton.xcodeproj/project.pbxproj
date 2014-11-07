@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		881CA0A619FA8FAF00B019E9 /* EditableCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 881CA0A519FA8FAF00B019E9 /* EditableCollectionView.m */; };
 		884929D619F6571200839BB7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 884929D519F6571200839BB7 /* main.m */; };
 		884929D919F6571200839BB7 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 884929D819F6571200839BB7 /* AppDelegate.m */; };
 		884929DC19F6571200839BB7 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 884929DB19F6571200839BB7 /* ViewController.m */; };
@@ -15,7 +14,7 @@
 		884929E119F6571200839BB7 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 884929E019F6571200839BB7 /* Images.xcassets */; };
 		884929E419F6571200839BB7 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 884929E219F6571200839BB7 /* LaunchScreen.xib */; };
 		884929F019F6571200839BB7 /* DeleteButtonTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 884929EF19F6571200839BB7 /* DeleteButtonTests.m */; };
-		884929FB19F6884100839BB7 /* EditableCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 884929FA19F6884100839BB7 /* EditableCollectionViewCell.m */; };
+		88C9C1DC1A093C6B0021F089 /* EditableCollectionView.m in Sources */ = {isa = PBXBuildFile; fileRef = 88C9C1DB1A093C6A0021F089 /* EditableCollectionView.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,8 +28,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		881CA0A419FA8FAF00B019E9 /* EditableCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableCollectionView.h; sourceTree = "<group>"; };
-		881CA0A519FA8FAF00B019E9 /* EditableCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableCollectionView.m; sourceTree = "<group>"; };
 		884929D019F6571200839BB7 /* DeleteButton.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DeleteButton.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		884929D419F6571200839BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884929D519F6571200839BB7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -44,8 +41,8 @@
 		884929E919F6571200839BB7 /* DeleteButtonTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DeleteButtonTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		884929EE19F6571200839BB7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		884929EF19F6571200839BB7 /* DeleteButtonTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DeleteButtonTests.m; sourceTree = "<group>"; };
-		884929F919F6884100839BB7 /* EditableCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableCollectionViewCell.h; sourceTree = "<group>"; };
-		884929FA19F6884100839BB7 /* EditableCollectionViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableCollectionViewCell.m; sourceTree = "<group>"; };
+		88C9C1DA1A093C6A0021F089 /* EditableCollectionView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EditableCollectionView.h; sourceTree = "<group>"; };
+		88C9C1DB1A093C6A0021F089 /* EditableCollectionView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EditableCollectionView.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -95,10 +92,8 @@
 				884929E019F6571200839BB7 /* Images.xcassets */,
 				884929E219F6571200839BB7 /* LaunchScreen.xib */,
 				884929D319F6571200839BB7 /* Supporting Files */,
-				884929F919F6884100839BB7 /* EditableCollectionViewCell.h */,
-				884929FA19F6884100839BB7 /* EditableCollectionViewCell.m */,
-				881CA0A419FA8FAF00B019E9 /* EditableCollectionView.h */,
-				881CA0A519FA8FAF00B019E9 /* EditableCollectionView.m */,
+				88C9C1DA1A093C6A0021F089 /* EditableCollectionView.h */,
+				88C9C1DB1A093C6A0021F089 /* EditableCollectionView.m */,
 			);
 			path = DeleteButton;
 			sourceTree = "<group>";
@@ -229,11 +224,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				884929FB19F6884100839BB7 /* EditableCollectionViewCell.m in Sources */,
 				884929DC19F6571200839BB7 /* ViewController.m in Sources */,
-				881CA0A619FA8FAF00B019E9 /* EditableCollectionView.m in Sources */,
 				884929D919F6571200839BB7 /* AppDelegate.m in Sources */,
 				884929D619F6571200839BB7 /* main.m in Sources */,
+				88C9C1DC1A093C6B0021F089 /* EditableCollectionView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
